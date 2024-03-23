@@ -7,9 +7,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
+
 export default {
   name: 'HomePage',
   computed: {
+    ...mapGetters(['getUser']),
     isAuthenticated() {
       // Vérifiez si l'utilisateur est authentifié en vérifiant s'il y a des données utilisateur dans le store Vuex
       return !!this.$store.state.user.firstName && !!this.$store.state.user.lastName;

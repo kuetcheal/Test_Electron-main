@@ -14,6 +14,9 @@
 </template>
 
 <script>
+
+import { useStore } from 'vuex';
+
 export default {
   name: 'LoginForm',
   inject: ['$router'], // Injecter l'instance du routeur
@@ -26,6 +29,9 @@ export default {
   },
   methods: {
     onSubmit () {
+
+      const store = useStore();
+
       // Valider les données saisies
       if (!this.firstName || !this.lastName || !this.password) {
         alert('Tous les champs sont obligatoires');
@@ -33,7 +39,7 @@ export default {
       }
 
       // Envoyer les données à l'action Vuex pour la connexion
-      this.$store.dispatch('login', {
+      store.dispatch('login', {
         firstName: this.firstName,
         lastName: this.lastName,
         password: this.password

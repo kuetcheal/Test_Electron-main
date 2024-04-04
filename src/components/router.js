@@ -1,27 +1,51 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Connexion from '../components/connexion.vue';
+import ConnexionPage from '../components/connexionPage.vue';
+import InscriptionPage from '../components/inscriptionPage.vue';
 import HomePage from '../components/homePage.vue';
+import ErrorPage from '../components/errorPage.vue';
+import ContactPage from '../components/contactPage.vue';
+import ServicePage from '../components/servicePage.vue';
+
+
 
 
 const routes = [
   {
     path: '/',
-    name: 'Connexion',
-    component: Connexion
+    name: 'ConnexionPage',
+    component: ConnexionPage
+  },
+  {
+    path: '/inscriptionPage',
+    name: 'InscriptionPage',
+    component: InscriptionPage
   },
   {
     path: '/homePage',
     name: 'HomePage', 
     component: HomePage
-  }
+  },
+  {
+    path: '/contactPage',
+    name: 'ContactPage',
+    component: ContactPage
+  },
+  {
+    path: '/servicePage',
+    name: 'ServicePage',
+    component: ServicePage
+  },
+  {
+    path: '/:pathMatch(.*)', // Utilisez pathMatch pour capturer toutes les routes non définies
+    name: 'ErrorPage', 
+    component: ErrorPage 
+  },
  
 ];
 
-// Créez votre routeur en utilisant createRouter
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 });
-
 
 export default router;

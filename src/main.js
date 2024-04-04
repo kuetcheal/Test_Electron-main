@@ -3,8 +3,9 @@ import App from './App.vue';
 import Vuex from 'vuex';
 import store from './store'; 
 import router from './components/router';
-import connexion from './components/connexion.vue';
+import connexion from './components/connexionPage.vue';
 import homePage from './components/homePage.vue';
+import contactPage from './components/contactPage.vue';
 
 
 createApp(App)
@@ -13,6 +14,7 @@ createApp(App)
   .use(router)
   .component('connexion', connexion)
   .component('homePage', homePage)
+  .component('contactPage', contactPage)
   .mount('#app');
 
 

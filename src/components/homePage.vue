@@ -1,34 +1,101 @@
 <template>
   <div class="home-page">
-    <h1>Bienvenue</h1>
-    <p v-if="isAuthenticated">Bienvenue, {{ firstName }} {{ lastName }}!</p>
-     <p v-else>Veuillez vous connecter pour accéder à cette page.</p>
+    <!-- Logo de l'application -->
+    <img src="@/assets/logo.png" alt="Logo de l'application" class="logo">
+
+    <!-- Icônes -->
+    <div class="icons">
+      <span class="icon notification-icon">Notifications</span>
+      <span class="icon cart-icon">Panier</span>
+      <span class="icon profile-icon">Profil</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+      <router-link to='/'>Accueil</router-link>
+      <router-link to='/contact'>Contact</router-link>
+      <router-link to='/service'>Nos services</router-link>
+    </nav>
+    <p>Bonjour {{ rendu }}</p>
+     <p>la grande famille vous dire  {{ getJacques }}</p>
+      <p>et à  {{ getJohn }}</p>
+
+       <div v-if="getUserData">
+      <p>Bonjour {{ getUserData.firstName }} {{ getUserData.lastName }}</p>
+      <p>Email: {{ getUserData.email }}</p>
+      <!-- Vous pouvez afficher d'autres données de l'utilisateur ici -->
+    </div>
+    <!-- Vue Router -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
+  data () {
+        return{
+        rendu: this.$store.state.Marcel
+        }
+  },
+  // computed:{
+  //   ...mapGetters(['getJacques', 'getJohn', 'getUserData'])
+  // }
   computed: {
-    ...mapGetters(['getUser']),
-    isAuthenticated() {
-      // Vérifiez si l'utilisateur est authentifié en vérifiant s'il y a des données utilisateur dans le store Vuex
-      return !!this.$store.state.user.firstName && !!this.$store.state.user.lastName;
-    },
-    user() {
-      // Récupérez les données de l'utilisateur depuis le store Vuex
-      return this.$store.state.user;
+    ...mapGetters(['getJacques', 'getJohn', 'getUserData']),
+    userData() {
+      return this.getUserData;
     }
   }
-};
+}
 </script>
 
 <style>
+/* Styles CSS pour la page HomePage.vue */
 .home-page {
   text-align: center;
-  padding: 20px;
+}
+
+.logo {
+  width: 100px; /* Ajustez la taille selon vos besoins */
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.icons {
+  margin-top: 20px;
+}
+
+.icon {
+  margin-right: 20px;
+  font-size: 24px;
+}
+
+.notification-icon:before {
+  content: '\1F514'; /* Unicode pour une icône de notification, ajustez selon votre choix */
+}
+
+.cart-icon:before {
+  content: '\1F6D2'; /* Unicode pour une icône de panier, ajustez selon votre choix */
+}
+
+.profile-icon:before {
+  content: '\1F464'; /* Unicode pour une icône de profil, ajustez selon votre choix */
+}
+
+nav {
+  margin-top: 20px;
+}
+
+nav a {
+  margin-right: 10px;
+  color: #333; /* Couleur du texte */
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #007bff; /* Couleur du texte au survol */
 }
 </style>

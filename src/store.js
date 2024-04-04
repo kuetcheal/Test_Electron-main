@@ -6,21 +6,38 @@ const store = createStore({
     user: {
       firstName: null,
       lastName: null,
-      password: null
-    }
+      password: null,
+      email: null
+    },
+    Marcel: 'ALEX KUETCHE',
+    Jacques: 'aurevoir',
+    John: 'bientot'
   },
   
-  
+  getters: {
+    getJacques(state){
+      return state.Jacques
+    },
+    getJohn(state){
+      return state.John
+    },
+    getUserData(state) {
+      return state.user;
+    }
+  },
+
+
   mutations: {
     setUser (state, user) {
       state.user.firstName = user.firstName;
       state.user.lastName = user.lastName;
       state.user.password = user.password;
+      state.user.email = user.email;
     },
     // ...
   },
   actions: {
-    login ({ commit }, { firstName, lastName, password, router }) {
+    login ({ commit }, { firstName, lastName, password, email, router }) {
       // Simuler une authentification avec un service externe
       // ...
 
@@ -28,7 +45,8 @@ const store = createStore({
       commit('setUser', {
         firstName,
         lastName,
-        password
+        password,
+        email
       });
 
       // Rediriger vers la page d'accueil

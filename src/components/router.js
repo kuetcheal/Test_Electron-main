@@ -7,8 +7,6 @@ import ContactPage from '../components/contactPage.vue';
 import ServicePage from '../components/servicePage.vue';
 
 
-
-
 const routes = [
   {
     path: '/',

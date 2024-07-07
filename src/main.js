@@ -8,6 +8,7 @@ import homePage from './components/homePage.vue';
 import contactPage from './components/contactPage.vue';
 
 
+
 createApp(App)
   .use(Vuex)
   .use(store)

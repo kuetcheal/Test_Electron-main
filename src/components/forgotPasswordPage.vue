@@ -1,36 +1,30 @@
 <template>
-  <div class="login-form">
-    <h1>Connexion</h1>
+  <div class="forgot-password-form">
+    <h1>Mot de Passe Oublié</h1>
     <form @submit.prevent="onSubmit">
       <label for="email">Email</label>
       <input type="email" id="email" v-model="email" required>
-      <label for="password">Mot de passe</label>
-      <input type="password" id="password" v-model="password" required>
-      <button type="submit">Se connecter</button>
+      <button type="submit"> réinitialiser</button>
     </form>
-    <p>Si vous n'avez pas de compte, veuillez vous inscrire ici. <router-link to="/inscriptionPage">S'inscrire</router-link></p>
-    <p><router-link to="/forgotPasswordPage">Mot de passe oublié?</router-link></p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'connexionPage',
+  name: 'forgotPasswordPage',
   data() {
     return {
-      email: '',
-      password: ''
+      email: ''
     };
   },
   methods: {
     async onSubmit() {
       const userData = {
-        email: this.email,
-        password: this.password
+        email: this.email
       };
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/login', {
+        const response = await fetch('http://127.0.0.1:8000/api/forgot-password', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -39,9 +33,9 @@ export default {
         });
 
         if (!response.ok) {
-          throw new Error('Informations d\'identification incorrectes');
+          throw new Error('Erreur lors de l\'envoi de l\'email de réinitialisation');
         }
-        this.$router.push('/servicePage');
+        alert('Un email de réinitialisation a été envoyé');
       } catch (error) {
         alert(error.message);
       }
@@ -51,7 +45,7 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
+.forgot-password-form {
   max-width: 400px;
   margin: auto;
 }
@@ -61,8 +55,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="email"],
-input[type="password"] {
+input[type="email"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;

@@ -1,5 +1,8 @@
 <template>
   <div class="home-page">
+    <!-- Inclure la barre de navigation -->
+    <AppNavbar />
+
     <!-- Logo de l'application -->
     <img src="@/assets/logo.png" alt="Logo de l'application" class="logo">
 
@@ -16,15 +19,17 @@
       <router-link to='/contact'>Contact</router-link>
       <router-link to='/service'>Nos services</router-link>
     </nav>
-    <p>Bonjour {{ rendu }}</p>
-     <p>la grande famille vous dire  {{ getJacques }}</p>
-      <p>et à  {{ getJohn }}</p>
 
-       <div v-if="getUserData">
+    <p>Bonjour {{ rendu }}</p>
+    <p>la grande famille vous dire  {{ getJacques }}</p>
+    <p>et à  {{ getJohn }}</p>
+
+    <div v-if="getUserData">
       <p>Bonjour {{ getUserData.firstName }} {{ getUserData.lastName }}</p>
       <p>Email: {{ getUserData.email }}</p>
       <!-- Vous pouvez afficher d'autres données de l'utilisateur ici -->
     </div>
+
     <!-- Vue Router -->
     <router-view></router-view>
   </div>
@@ -32,17 +37,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import AppNavbar from './AppNavbar.vue' // Importer le composant AppNavbar
 
 export default {
   name: 'HomePage',
-  data () {
-        return{
-        rendu: this.$store.state.Marcel
-        }
+  components: {
+    AppNavbar // Déclarer le composant AppNavbar
   },
-  // computed:{
-  //   ...mapGetters(['getJacques', 'getJohn', 'getUserData'])
-  // }
+  data () {
+    return {
+      rendu: this.$store.state.Marcel
+    }
+  },
   computed: {
     ...mapGetters(['getJacques', 'getJohn', 'getUserData']),
     userData() {

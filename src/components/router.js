@@ -5,7 +5,8 @@ import HomePage from '../components/homePage.vue';
 import ErrorPage from '../components/errorPage.vue';
 import ContactPage from '../components/contactPage.vue';
 import ServicePage from '../components/servicePage.vue';
-
+import ForgotPasswordPage from '../components/forgotPasswordPage.vue';
+//import AppNavbar from '../components/AppNavbar';
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
     path: '/servicePage',
     name: 'ServicePage',
     component: ServicePage
+  },
+  {
+    path: '/forgotPasswordPage',
+    name: 'forgotPasswordPage',
+    component: ForgotPasswordPage
   },
   {
     path: '/:pathMatch(.*)', // Utilisez pathMatch pour capturer toutes les routes non définies

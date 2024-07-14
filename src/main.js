@@ -2,10 +2,12 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import Vuex from 'vuex';
 import store from './store'; 
+import vuetify from './plugins/vuetify';
 import router from './components/router';
 import connexion from './components/connexionPage.vue';
 import homePage from './components/homePage.vue';
 import contactPage from './components/contactPage.vue';
+import forgotPasswordPage from './components/forgotPasswordPage.vue';
 
 
 
@@ -13,7 +15,9 @@ createApp(App)
   .use(Vuex)
   .use(store)
   .use(router)
+  .use(vuetify)
   .component('connexion', connexion)
+  .component('forgotPasswordPage', forgotPasswordPage)
   .component('homePage', homePage)
   .component('contactPage', contactPage)
   .mount('#app');

@@ -4,7 +4,7 @@
     <form @submit.prevent="registerUser">
       <div class="form-group">
         <label for="firstName">Prénom</label>
-        <input type="text" id="firstName" v-model="firstName" required>
+        <input type="text" id="username" v-model="username" required>
       </div>
       <div class="form-group">
         <label for="lastName">Nom</label>
@@ -19,61 +19,49 @@
         <input type="password" id="password" v-model="password" required>
       </div>
       <button type="submit">S'inscrire</button>
-      <p> vous avez déjà un compte, veuillez vous connecter ici. <router-link to="/">Se connecter</router-link></p>
+      <p>Vous avez déjà un compte, veuillez vous connecter ici. <router-link to="/">Se connecter</router-link></p>
     </form>
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      firstName: '',
+      username: '',
       lastName: '',
       email: '',
       password: ''
     };
   },
   methods: {
-     ...mapMutations(['setUser']),
+    async registerUser() {
+      try {
+        // Envoyer les données au serveur Symfony
+        const response = await axios.post('http://127.0.0.1:8000/api/register', {
+          username: this.username, // Assurez-vous que ce champ correspond au nom attendu par Symfony
+          password: this.password,
+          lastName: this.lastName,
+          email: this.email
+        });
 
-   async registerUser() {
-      // Validation des champs et envoi des données au serveur
-      if (!this.firstName || !this.lastName || !this.email || !this.password) {
-        alert('Tous les champs sont obligatoires');
-        return;
+        if (response.status === 201) {
+          alert('Inscription réussie !');
+          this.$router.push('/homePage');
+        }
+      } catch (error) {
+        console.error('Erreur lors de l\'inscription', error);
+        alert('Une erreur est survenue lors de l\'inscription.');
       }
       
-      // Appeler la mutation `setUser` pour mettre à jour l'état avec les données de l'utilisateur
-      this.setUser({
-        firstName: this.firstName,
-        lastName: this.lastName,
-           email: this.email, 
-        password: this.password
-      });
-
-
-      // Vous pouvez envoyer les données au serveur pour l'enregistrement
-      // console.log('Données d\'inscription :', {
-      //   firstName: this.firstName,
-      //   lastName: this.lastName,
-      //   email: this.email,
-      //   password: this.password
-      // });
-      
       // Réinitialiser les champs après soumission
-      this.firstName = '';
+      this.username = '';
       this.lastName = '';
       this.email = '';
       this.password = '';
-
-        this.$router.push('/homePage');
-    },
-
-   
+    }
   }
 };
 </script>

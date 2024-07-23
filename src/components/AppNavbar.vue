@@ -1,16 +1,35 @@
 <template>
   <nav>
-    <ul>
+    <div class="entete">
+    <div class="logo"> <img src="@/assets/logo.png" alt="Logo de l'application" class="logo"></div>
+   <div class="menu"><ul>
       <li><a href="/">Accueil</a></li>
-      <li><a href="/portfolio">Portfolio</a></li>
-      <li><a href="/devis">Devis</a></li>
-      <li><a href="/guide">Guide</a></li>
+      <li>
+    <div class="dropdown">
+      <a href="#" class="dropbtn">Nos services</a><el-icon><ArrowDownBold /></el-icon>
+      <div class="dropdown-content">
+        <a href="#">Caution bancaire (AVI)</a>
+        <a href="#">Assurance voyage</a>
+        <a href="#">Logement Etudiant</a>
+        <a href="#">Remboursement caution</a>
+        <a href="#">Frais scolarité</a>
+      </div>
+    </div>
+  </li>
+      <li><div class="dropdown">
+          <button class="dropbtn">EasyTravel</button><el-icon><ArrowDownBold /></el-icon>
+          <div class="dropdown-content">
+            <a href="#" >Nos offres</a>
+            <a href="#">Nos partenaires</a>
+            <a href="#" >nous découvrir</a>
+          </div>
+          </div></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/contact">Contact</a></li>
       <li><a href="/inscription">Inscription</a></li>
       <li>
         <div class="dropdown">
-          <button class="dropbtn">Mon Compte</button>
+          <button class="dropbtn">Mon Compte<el-icon><ArrowDownBold /></el-icon></button>
           <div class="dropdown-content">
             <a href="#" @click="deleteAccount">Supprimer</a>
             <a href="#">Modifier</a>
@@ -18,14 +37,25 @@
           </div>
         </div>
       </li>
-    </ul>
+    </ul></div>
+    <div class="outil">
+      <el-icon><Bell /></el-icon>
+    </div>
+    </div>
   </nav>
 </template>
 
 <script>
 import axios from 'axios';
+import { ArrowDownBold, Bell } from '@element-plus/icons-vue';
+import { ElIcon } from 'element-plus';
 
 export default {
+   components: {
+    ElIcon,
+    ArrowDownBold,
+    Bell
+  },
   methods: {
     async deleteAccount() {
       const token = localStorage.getItem('token'); // Assuming you store the token in local storage
@@ -70,6 +100,16 @@ nav li {
 
 .dropdown {
   display: inline-block;
+  /* position: relative; */
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .dropdown-content {
@@ -88,9 +128,18 @@ nav li {
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
+.entete{
+  display: flex;
+  gap: 80px;
+  margin-left: 100px;
+  
+}
+
 </style>

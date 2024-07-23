@@ -1,10 +1,7 @@
 <template>
   <div class="home-page">
-    <!-- Inclure la barre de navigation -->
     <AppNavbar />
-
-    <!-- Logo de l'application -->
-    <img src="@/assets/logo.png" alt="Logo de l'application" class="logo">
+    
 
     <!-- Icônes -->
     <div class="icons">

@@ -1,8 +1,10 @@
 <template>
   <div class="forgot-password-form">
+    <el-icon><Plus /></el-icon>
     <h1>Mot de Passe Oublié</h1>
     <form @submit.prevent="onSubmit">
       <label for="email">Email</label>
+      <el-icon><Plus /></el-icon>
       <input type="email" id="email" v-model="email" required>
       <button type="submit"> réinitialiser</button>
     </form>
@@ -10,12 +12,20 @@
 </template>
 
 <script>
+
+import { ElIcon } from 'element-plus';
+import { Plus } from '@element-plus/icons-vue';
+
 export default {
   name: 'forgotPasswordPage',
   data() {
     return {
       email: ''
     };
+  },
+  components: {
+    ElIcon,
+    Plus
   },
   methods: {
     async onSubmit() {

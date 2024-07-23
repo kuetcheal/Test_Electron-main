@@ -3,7 +3,7 @@
     <h1>Inscription</h1>
     <form @submit.prevent="registerUser">
       <div class="form-group">
-        <label for="firstName">Prénom</label>
+        <label for="username">Prénom</label>
         <input type="text" id="username" v-model="username" required>
       </div>
       <div class="form-group">
@@ -41,7 +41,7 @@ export default {
       try {
         // Envoyer les données au serveur Symfony
         const response = await axios.post('http://127.0.0.1:8000/api/register', {
-          username: this.username, // Assurez-vous que ce champ correspond au nom attendu par Symfony
+          username: this.username,
           password: this.password,
           lastName: this.lastName,
           email: this.email
@@ -55,7 +55,7 @@ export default {
         console.error('Erreur lors de l\'inscription', error);
         alert('Une erreur est survenue lors de l\'inscription.');
       }
-      
+
       // Réinitialiser les champs après soumission
       this.username = '';
       this.lastName = '';

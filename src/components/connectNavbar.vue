@@ -26,7 +26,6 @@
           </div></li>
       <li><a href="/blog">Blog</a></li>
       <li><a href="/contact">Contact</a></li>
-      <li><a href="/inscription">Inscription</a></li>
       <li>
         <div class="dropdown">
           <button class="dropbtn">Mon Compte<el-icon><ArrowDownBold /></el-icon></button>

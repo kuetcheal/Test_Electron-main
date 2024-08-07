@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <AppNavbar />
+    <ConnectNavbar />
 
     <!-- Navigation -->
     <nav>
@@ -26,12 +26,13 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import AppNavbar from './Navbar/AppNavbar.vue' // Importer le composant AppNavbar
+import ConnectNavbar from '../components/connectNavbar.vue';
+
 
 export default {
   name: 'HomePage',
   components: {
-    AppNavbar // Déclarer le composant AppNavbar
+   ConnectNavbar // Déclarer le composant AppNavbar
   },
   data () {
     return {

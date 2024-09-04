@@ -1,7 +1,12 @@
 <template>
   <nav>
     <div class="entete">
-    <div class="logo"> <img src="@/assets/logo.png" alt="Logo de l'application" class="logo"></div>
+      <div class="logo-container">
+    <div class="logo-text">
+      <h2>MOBILIIS</h2>
+      <p>Votre voyage garantie</p>
+    </div>
+  </div>
    <div class="menu"><ul>
       <li><a href="/">Accueil</a></li>
       <li>
@@ -16,36 +21,35 @@
       </div>
     </div>
   </li>
-      <li><div class="dropdown">
+      <!-- <li><div class="dropdown">
           <button class="dropbtn">EasyTravel</button><el-icon><ArrowDownBold /></el-icon>
           <div class="dropdown-content">
             <a href="#" >Nos offres</a>
             <a href="#">Nos partenaires</a>
             <a href="#" >nous découvrir</a>
           </div>
-          </div></li>
+          </div></li> -->
       <li><a href="/blog">Blog</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a href="/contactPage">Contact</a></li>
       <li><a href="/inscriptionPage">Inscription</a></li>
       <li><a href="/connexionPage">Connexion</a></li>
     </ul></div>
     <div class="outil">
-      <el-icon><Bell /></el-icon>
-    </div>
+    <img src="@/assets/OIP.jpg" alt="Outil" class="outil-image" />
+  </div>
     </div>
   </nav>
 </template>
 
 <script>
 import axios from 'axios';
-import { ArrowDownBold, Bell } from '@element-plus/icons-vue';
+import { ArrowDownBold,  } from '@element-plus/icons-vue';
 import { ElIcon } from 'element-plus';
 
 export default {
    components: {
     ElIcon,
-    ArrowDownBold,
-    Bell
+    ArrowDownBold
   },
   methods: {
     async deleteAccount() {
@@ -133,4 +137,58 @@ nav li {
   
 }
 
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.logo-text{
+  position: relative;
+  right: 25px;
+}
+.logo-text h2 {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #91c451; /* Couleur verte */
+  font-size: 30px; /* Taille du texte APLINET */
+}
+
+.logo-text p {
+  font-family: 'Arial', sans-serif;
+  font-size: 16px; /* Taille du texte en dessous */
+  color: #91c451; /* Même couleur verte */
+  margin-top: -10px;
+}
+
+.outil-image {
+  width: 60px; /* Vous pouvez ajuster la taille selon vos besoins */
+  height: 60px; /* Vous pouvez ajuster la taille selon vos besoins */
+  object-fit: cover; /* Ajuste l'image pour qu'elle rentre dans la boîte sans la déformer */
+  margin-left: 65px;
+  margin-top: 35px;
+  border-radius: 50%; /* Ajoute l'effet circulaire */
+  cursor: pointer;
+}
+
+nav {
+  background-color: #026f02; /* Couleur de fond verte */
+  padding: 10px;
+}
+.menu ul li a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+.menu ul li a:hover {
+  background-color: #1aa721; /* Couleur de fond hover plus claire */
+}
+.menu{
+  margin-top: 30px;
+}
 </style>
